@@ -1,8 +1,23 @@
-name: test build
-on: [push]
+name: CI pipeline
+on:
+  push:
+    brances: [main]
+  pull_request:
+    branches: [main]
+    
 jobs:
-  build:
+  lint-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose build
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Ge vet (lint)
+        working-directory: ./back
+        run: go vet ./...
+
+        - name: Build Docker images
+        - run: docker compose build
