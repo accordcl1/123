@@ -7,7 +7,7 @@ COPY main.go ./
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 #этап 2
-FROM alpine:latest 
+FROM alpine:3.24 
 WORKDIR /root/
 
 COPY --from=builder /app/main .

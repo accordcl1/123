@@ -22,11 +22,11 @@ jobs:
       - name: docker back linter
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: back/dockerfile
+          dockerfile: back/Dockerfile
       - name: docker front linter
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: front/dockerfile
+          dockerfile: front/Dockerfile
       - name: compose linter
         run: docker compose config -q
 
